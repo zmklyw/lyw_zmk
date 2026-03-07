@@ -122,93 +122,6 @@
             <div class="photo-item">
                 < img src="https://s3.bmp.ovh/2026/03/07/7AAEgobP.png" alt="相遇照片">
             </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/9SwMi7v4.jpg" alt="相遇照片2">
-            </div>
-        </div>
-    </div>
-
-    <!-- 3. 同居计时 -->
-    <div class="timer-card">
-        <div class="timer-title">我们住在一起啦：</div>
-        <div class="timer-display" id="liveTogetherTimer">0天 0时 0分 0秒</div>
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/nyo40xE4.jpg" alt="同居照片">
-            </div>
-        </div>
-    </div>
-
-    <!-- 4. 结婚计时 -->
-    <div class="timer-card">
-        <div class="timer-title">我们结婚啦：</div>
-        <div class="timer-display" id="marryTimer">0天 0时 0分 0秒</div>
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://via.placeholder.com/300" alt="结婚照片">
-            </div>
-        </div>
-    </div>
-
-    <!-- 5. 宝宝计时 -->
-    <div class="timer-card">
-        <div class="timer-title">我们有宝宝啦：</div>
-        <div class="timer-display" id="babyTimer">0岁 0个月 0天</div>
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://via.placeholder.com/300" alt="宝宝照片">
-            </div>
-        </div>
-    </div>
-
-    <!-- 6. 电影电视剧 -->
-    <div class="section-title">我们看过很多电影电视剧 🎬</div>
-    <div class="event-card">
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/MFGrrPKQ.jpg" alt="电影剧照">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/iLVxUwKM.jpg" alt="电视剧截图">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/v4LhxAaT.jpg" alt="观影合照">
-            </div>
-        </div>
-    </div>
-
-    <!-- 7. 旅行足迹 -->
-    <div class="section-title">我们走过很多地方 ✈️</div>
-    <div class="event-card">
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/jqNhVaWb.jpg" alt="旅行照片1">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/jMbshrqI.png" alt="旅行照片2">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/kbJgrHTx.jpg" alt="旅行照片3">
-            </div>
-        </div>
-    </div>
-
-    <!-- 8. 生活瞬间 -->
-    <div class="section-title">生活里很多瞬间 📸</div>
-    <div class="event-card">
-        <div class="photo-grid">
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/3hsIBKgv.jpg" alt="生活瞬间1">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/Rnzt4K56.jpg" alt="生活瞬间2">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/kFM6y9KJ.jpg" alt="生活瞬间3">
-            </div>
-            <div class="photo-item">
-                < img src="https://s3.bmp.ovh/2026/03/07/ePPRK6is.jpg" alt="生活瞬间4">
-            </div>
         </div>
     </div>
 
@@ -223,15 +136,6 @@
 
         // 2. 我们相遇的时间（到秒）
         const TOGETHER_DATE = "2025-02-20 12:11:00";
-
-        // 3. 我们住在一起的时间（到秒）
-        const LIVE_TOGETHER_DATE = "2025-09-09 12:00:00";
-
-        // 4. 我们结婚的时间（到秒）
-        const MARRY_DATE = "2026-10-01 11:00:00";
-
-        // 5. 宝宝出生的时间（到秒），宝宝出生后再填
-        const BABY_BIRTH_DATE = "";
 
         // ==============================================
         // 👇 下面的代码不用改，是用来计算时间的
@@ -253,36 +157,10 @@
             return `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
         }
 
-        // 计算宝宝年龄（岁、月、天）
-        function calcBabyAge() {
-            if (!BABY_BIRTH_DATE) return "0岁 0个月 0天";
-            const birth = new Date(BABY_BIRTH_DATE);
-            const now = new Date();
-            
-            let years = now.getFullYear() - birth.getFullYear();
-            let months = now.getMonth() - birth.getMonth();
-            let days = now.getDate() - birth.getDate();
-            
-            if (days < 0) {
-                months -= 1;
-                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-            if (months < 0) {
-                years -= 1;
-                months += 12;
-            }
-            
-            return `${years}岁 ${months}个月 ${days}天`;
-        }
-
         // 更新所有计时器
         function updateAllTimers() {
             document.getElementById("meetTimer").textContent = calcTime(MEET_DATE);
             document.getElementById("togetherTimer").textContent = calcTime(TOGETHER_DATE);
-            document.getElementById("liveTogetherTimer").textContent = calcTime(LIVE_TOGETHER_DATE);
-            document.getElementById("marryTimer").textContent = calcTime(MARRY_DATE);
-            document.getElementById("babyTimer").textContent = calcBabyAge();
         }
 
         // 每秒更新一次
